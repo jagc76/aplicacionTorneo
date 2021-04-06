@@ -1,0 +1,7 @@
+{
+  "name": "Torneo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
