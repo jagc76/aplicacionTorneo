@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'esquemas',
+    loadChildren: () => import('./esquemas/esquemas.module').then( m => m.EsquemasPageModule)
+  },
 ];
 
 @NgModule({

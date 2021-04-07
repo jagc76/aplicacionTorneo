@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title><b>Rondas del Torneo</b></ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-card class="apps-card">
+    <ion-list>
+      <ion-item routerLink= "../esquemas">
+        <ion-thumbnail slot="start">
+          <img src="../../assets/img/ronda1.svg" />
+        </ion-thumbnail>
+        <ion-card-content class="ion-text-justify">
+          <h3><b>Ronda de Grupos</b></h3>
+          <ion-text>
+            Primera fase de grupos compuesta por 32 equipos que 
+            estan divididos en 8 grupos de 4 equipos eliminados 
+            entre si, clasificando los dos mejores de cada grupo.
+          </ion-text>
+        </ion-card-content>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <img src="../../assets/img/ronda2.svg" />
+        </ion-thumbnail>
+        <ion-card-content class="ion-text-justify">
+          <h3><b>Octavos de Final</b></h3>
+          <ion-text>
+            Octavos de final llegan los equipos clasificados de la 
+            primera ronda, los primeros de cada grupo con los segundos 
+            de cada grupo, el primero del grupo A con el segundo del 
+            grupo H y si sucesivamente hasta hacer las llaves.
+          </ion-text>
+        </ion-card-content>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <img src="../../assets/img/ronda3.svg" />
+        </ion-thumbnail>
+        <ion-card-content class="ion-text-justify">
+          <ion-text>
+            <h3><b>Cuartos de Final</b></h3>
+            <p>
+              Cuartos de final llegan los ganadores de octavos de final 
+              en cuatro encuentros donde los mejores 8 se eliminaran 
+              entre si para sacar los semifinalistas.
+            </p>
+          </ion-text>
+        </ion-card-content>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <img src="../../assets/img/ronda4.svg" />
+        </ion-thumbnail>
+        <ion-card-content class="ion-text-justify">
+          <ion-text>
+            <h3><b>Semifinal</b></h3>
+            <p>
+              Se enfrentan los 4 mejores equipos del torneo que pasaron 
+              de Cuartos de final y buscan un cupo por la gran final del 
+              torneo.
+            </p>
+          </ion-text>
+        </ion-card-content>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-thumbnail slot="start">
+          <img src="../../assets/img/winner.svg" />
+        </ion-thumbnail>
+        <ion-card-content class="ion-text-justify">
+          <ion-text>
+            <h3><b>Final</b></h3>
+            <p>
+              La "Gran Final" se enfrentan los dos mejores equipos del 
+              torneo ganadores en la semifinal por el titulo y los 
+              equipos que perdieron por el 3ro. y 4to. puesto.
+            </p>
+          </ion-text>
+        </ion-card-content>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</ion-content>
