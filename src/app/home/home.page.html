@@ -11,66 +11,66 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card-content>
-    <ion-title>
-      Bienvenidos al torneo de Voleibol.
-    </ion-title>
-  </ion-card-content>
-  <ion-card-header>
-    <ion-img src="../assets/img/inicioTorneo.webp"></ion-img>
-  </ion-card-header>
-  <ion-card-content class="ion-text-justify">
-    Bienvenidos al sistema de gestion del torneo de Voleibol
-    femenino intercolegiado del Valle del Cauca, en esta aplicacion
-    podras acceder a:
-  </ion-card-content>
-  <ion-card class="apps-card">
-    <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-thumbnail slot="start">
-            <img src="../../assets/img/torneo.svg" />
-          </ion-thumbnail>
-          <ion-label>
-            <h3><b>Esquemas</b></h3>
-            <p>Aqui encontraras los esquemas de cada ronda</p>
-          </ion-label>
-        </ion-item>
-        <ion-item class="ion-text-left">
-          <ion-thumbnail slot="start">
-            <img src="../../assets/img/calendar.svg" />
-          </ion-thumbnail>
-          <ion-label >
-            <h3><b>Calendario</b></h3>
-            <ion-label>
-              Aqui encontraras la informacion de cada encuentro
-            </ion-label>
-          </ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-thumbnail slot="start">
-            <img src="../../assets/img/best-employee.svg" />
-          </ion-thumbnail>
-          <ion-label>
-            <h3><b>Resultados</b></h3>
-            <p>
-              Aqui encontraras las estadisticas de cada uno de los encuentros
-            </p>
-          </ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-thumbnail slot="start">
-            <img src="../../assets/img/match.svg" />
-          </ion-thumbnail>
-          <ion-label>
-            <h3><b>Estadisticas por Equipos</b></h3>
-            <p>
-              Aqui encontraras las estadisticas de cada uno de los equipos y de
-              quienes lo conforman
-            </p>
-          </ion-label>
-        </ion-item>
-      </ion-list>
+  <ion-card>
+    <ion-title> Bienvenidos al torneo de Voleibol </ion-title>
+    <ion-card-header>
+      <ion-img src="../assets/img/inicioTorneo.webp"></ion-img>
+    </ion-card-header>
+    <ion-card-content class="ion-text-justify">
+      <ion-label>
+        Bienvenidos al sistema de gestion del torneo de Voleibol femenino
+        intercolegiado del Valle del Cauca, en esta aplicacion podras acceder a:
+      </ion-label>
     </ion-card-content>
+  </ion-card>
+  <ion-card class="apps-card">
+    <ion-list>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <img src="../../assets/img/torneo.svg" />
+        </ion-thumbnail>
+        <ion-label>
+          <h3><b>Esquemas</b></h3>
+          <ion-text class="ion-text-justify">
+            Aqui encontraras los esquemas de cada ronda
+          </ion-text>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <img src="../../assets/img/calendar.svg" />
+        </ion-thumbnail>
+        <ion-label>
+          <h3><b>Calendario</b></h3>
+          <ion-label>
+            Aqui encontraras la informacion de cada encuentro
+          </ion-label>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <img src="../../assets/img/best-employee.svg" />
+        </ion-thumbnail>
+        <ion-label>
+          <h3><b>Resultados</b></h3>
+          <p>
+            Aqui encontraras las estadisticas<br />
+            de cada uno de los encuentros
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-thumbnail slot="start">
+          <img src="../../assets/img/match.svg" />
+        </ion-thumbnail>
+        <ion-label>
+          <h3><b>Estadisticas por Equipos</b></h3>
+          <p>
+            Aqui encontraras las estadisticas de cada uno de los equipos y de
+            quienes lo conforman
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
   </ion-card>
 </ion-content>
