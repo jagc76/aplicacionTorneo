@@ -2,9 +2,9 @@
   <ion-toolbar>
     <ion-title> <b> SGTV </b> </ion-title>
     <ion-buttons slot="end">
-      <ion-button color="primary" fill="solid" shape="round">
-        <ion-icon name="person-circle"></ion-icon>
-        <ion-label> <b> Iniciar Sesión </b> </ion-label>
+      <ion-button color="primary" fill="outline" shape="round">
+        <ion-icon name="person-circle" slot="start"></ion-icon>
+        <ion-label><b>Iniciar Sesión</b></ion-label>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -12,37 +12,38 @@
 
 <ion-content [fullscreen]="true">
   <ion-card>
-    <ion-title> Bienvenidos al torneo de Voleibol </ion-title>
+    <ion-title color="primary" class="ion-text-center"> Bienvenidos al torneo de Voleibol </ion-title>
     <ion-card-header>
       <ion-img src="../assets/img/inicioTorneo.webp"></ion-img>
     </ion-card-header>
     <ion-card-content class="ion-text-justify">
-      <ion-label>
+      <ion-text color="primary">
         Bienvenidos al sistema de gestion del torneo de Voleibol femenino
         intercolegiado del Valle del Cauca, en esta aplicacion podras acceder a:
-      </ion-label>
+      </ion-text>
     </ion-card-content>
   </ion-card>
+
   <ion-card class="apps-card">
     <ion-list>
-      <ion-item routerLink= "../esquemas">
+      <ion-item routerLink="../esquemas">
         <ion-thumbnail slot="start">
           <img src="../../assets/img/torneo.svg" />
         </ion-thumbnail>
         <ion-card-content class="ion-text-justify">
           <h3><b>Esquemas</b></h3>
-          <ion-text>
+          <ion-text color="tertiary">
             Aqui encontraras los esquemas de cada ronda
           </ion-text>
         </ion-card-content>
       </ion-item>
-      <ion-item>
+      <ion-item routerLink="../calendario">
         <ion-thumbnail slot="start">
           <img src="../../assets/img/calendar.svg" />
         </ion-thumbnail>
         <ion-card-content class="ion-text-justify">
           <h3><b>Calendario</b></h3>
-          <ion-text>
+          <ion-text color="tertiary">
             Aqui encontraras la informacion de cada encuentro
           </ion-text>
         </ion-card-content>
@@ -52,12 +53,9 @@
           <img src="../../assets/img/best-employee.svg" />
         </ion-thumbnail>
         <ion-card-content class="ion-text-justify">
-          <ion-text>
-            <h3><b>Resultados</b></h3>
-            <p>
-              Aqui encontraras las estadisticas
-              de cada uno de los encuentros
-            </p>
+          <h3><b>Resultados</b></h3>
+          <ion-text color="tertiary">
+            Aqui encontraras las estadisticas de cada uno de los encuentros
           </ion-text>
         </ion-card-content>
       </ion-item>
@@ -66,12 +64,10 @@
           <img src="../../assets/img/match.svg" />
         </ion-thumbnail>
         <ion-card-content class="ion-text-justify">
-          <ion-text>
-            <h3><b>Estadisticas por Equipos</b></h3>
-            <p>
-              Aqui encontraras las estadisticas de cada uno de los equipos y de
-              quienes lo conforman
-            </p>
+          <h3><b>Estadisticas por Equipos</b></h3>
+          <ion-text color="tertiary">
+            Aqui encontraras las estadisticas de cada uno de los equipos y de
+            quienes lo conforman
           </ion-text>
         </ion-card-content>
       </ion-item>

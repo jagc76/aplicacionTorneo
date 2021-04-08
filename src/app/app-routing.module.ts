@@ -14,7 +14,11 @@ const routes: Routes = [
   {
     path: 'esquemas',
     loadChildren: () => import('./esquemas/esquemas.module').then( m => m.EsquemasPageModule)
+  },  {
+    path: 'calendario',
+    loadChildren: () => import('./calendario/calendario.module').then( m => m.CalendarioPageModule)
   },
+
 ];
 
 @NgModule({
