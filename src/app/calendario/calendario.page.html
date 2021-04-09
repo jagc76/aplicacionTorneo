@@ -13,5 +13,35 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-card>
+    <ion-item>
+      <ion-label color="primary">Elija una ronda</ion-label>
+      <ion-select>
+        <ion-select-option value="ronda">Ronda de Grupos</ion-select-option>
+        <ion-select-option value="octavos">Octavos de Final</ion-select-option>
+        <ion-select-option value="cuartos">Cuartos de Final</ion-select-option>
+        <ion-select-option value="semifinal">Semifinal</ion-select-option>
+        <ion-select-option value="final">Final</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-card-subtitle color="tertiary">
+      Elija un partido para ver mas informacion
+    </ion-card-subtitle>
+    <ion-list>
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="3" class="ion-text-center"> Fecha </ion-col>
+            <ion-col size="4" class="ion-text-center" color="primary">
+              <b> 1 </b>
+            </ion-col>
+            <ion-col size="1" class="ion-text-center"> vs </ion-col>
+            <ion-col size="4" class="ion-text-center" color="primary">
+              <b> 2 </b>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+  </ion-card>
 </ion-content>
