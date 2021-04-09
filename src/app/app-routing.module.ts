@@ -14,10 +14,23 @@ const routes: Routes = [
   {
     path: 'esquemas',
     loadChildren: () => import('./esquemas/esquemas.module').then( m => m.EsquemasPageModule)
-  },  {
+  },
+  {
     path: 'calendario',
     loadChildren: () => import('./calendario/calendario.module').then( m => m.CalendarioPageModule)
   },
+  {
+    path: 'resultados',
+    loadChildren: () => import('./resultados/resultados.module').then( m => m.ResultadosPageModule)
+  },
+  {
+    path: 'encuentro',
+    loadChildren: () => import('./encuentro/encuentro.module').then( m => m.EncuentroPageModule)
+  },  {
+    path: 'estadisticas',
+    loadChildren: () => import('./estadisticas/estadisticas.module').then( m => m.EstadisticasPageModule)
+  },
+
 
 ];
 
