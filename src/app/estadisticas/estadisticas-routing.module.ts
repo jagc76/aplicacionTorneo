@@ -6,6 +6,11 @@ import { EstadisticasPage } from './estadisticas.page';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'equipos',
+    pathMatch: 'full',
+  },
+  {
+    path: '',
     component: EstadisticasPage,
     children: [
       {
@@ -26,11 +31,6 @@ const routes: Routes = [
               ),
           },
         ],
-      },
-      {
-        path: '',
-        redirectTo: '/app/estadisticas/equipos',
-        pathMatch: 'full',
       },
     ],
   },
