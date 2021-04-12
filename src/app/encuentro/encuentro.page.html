@@ -1,0 +1,149 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Informacion de Encuentro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col size="4">
+      <ion-button>Encuentro</ion-button>
+    </ion-col>
+    <ion-col size="4"></ion-col>
+    <ion-col size="4" class="ion-text-center">
+      <ion-button>Ronda</ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4">
+      <ion-item lines= "none">
+        <div class="ion-text-center">
+          <h5>{{cod_encuento}}encuentro</h5>
+        </div>
+      </ion-item>
+    </ion-col>
+    <ion-col size="4"></ion-col>
+    <ion-col size="4">
+      <ion-item lines= "none">
+        <div >
+          <h5>{{cod_ronda}}ronda</h5>
+        </div>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4" class="ion-text-center">
+      <ion-button>Fecha</ion-button>
+    </ion-col>
+    <ion-col size="4"></ion-col>
+    <ion-col size="4" class="ion-text-center">
+      <ion-button>cancha</ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4">
+      <ion-item lines= "none">
+        <div >
+          <h5>{{fecha}}fecha</h5>
+        </div>
+      </ion-item>
+    </ion-col>
+    <ion-col size="4"></ion-col>
+    <ion-col size="4">
+      <ion-item lines= "none">
+        <div >
+          <h5>{{cancha}}cancha</h5>
+        </div>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="5">
+      <ion-button>equipo local</ion-button>
+    </ion-col>
+    <ion-col size="2"></ion-col>
+    <ion-col size="5" class="ion-text-center">
+      <ion-button>equipo visitante</ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4">
+      <ion-item lines= "none">
+        <div class="ion-text-center">
+          <h5>{{cod_equipo1}}equipo1</h5>
+        </div>
+      </ion-item>
+    </ion-col>
+    <ion-col size="4"></ion-col>
+    <ion-col size="4">
+      <ion-item lines= "none">
+        <div >
+          <h5>{{cod_equipo2}}equipo2</h5>
+        </div>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4">
+      <ion-button>Puntaje</ion-button>
+    </ion-col>
+    <ion-col size="4"></ion-col>
+    <ion-col size="4" class="ion-text-center">
+      <ion-button>Puntaje</ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4">
+      <ion-item lines= "none">
+        <div class="ion-text-center">
+          <h5>{{ptos_equipo1}}puntaje 1</h5>
+        </div>
+      </ion-item>
+    </ion-col>
+    <ion-col size="4"></ion-col>
+    <ion-col size="4">
+      <ion-item lines= "none">
+        <div >
+          <h5>{{ptos_equipo2}}puntaje 2</h5>
+        </div>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4" class="ion-tex-center">
+      <ion-button>Juez 1</ion-button>
+    </ion-col>
+    <ion-col size="4" class="ion-text-center">
+      <ion-button>Juez 2</ion-button>
+    </ion-col>
+    <ion-col size="4" class="ion-text-center">
+      <ion-button>Juez 3</ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4">
+      <ion-item lines= "none">
+        <div class="ion-text-center">
+          <h5>{{id_juez1}}juez 1</h5>
+        </div>
+      </ion-item>
+    </ion-col>
+    <ion-col size="4">
+      <ion-item lines= "none">
+        <div >
+          <h5>{{id_juez2}}juez 2</h5>
+        </div>
+      </ion-item>
+    </ion-col>
+    <ion-col size="4">
+      <ion-item lines= "none">
+        <div >
+          <h5>{{id_juez3}}juez 3</h5>
+        </div>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+</ion-content>
