@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'eliminacion-directa',
     loadChildren: () => import('./eliminacion-directa/eliminacion-directa.module').then( m => m.EliminacionDirectaPageModule)
+  },
+  {
+    path: 'final',
+    loadChildren: () => import('./final/final.module').then( m => m.FinalPageModule)
   }
 
 ];
