@@ -26,15 +26,11 @@ const routes: Routes = [
   {
     path: 'encuentro',
     loadChildren: () => import('./encuentro/encuentro.module').then( m => m.EncuentroPageModule)
-  },  {
+  },
+  {
     path: 'estadisticas',
     loadChildren: () => import('./estadisticas/estadisticas.module').then( m => m.EstadisticasPageModule)
   },
-  {
-    path: 'grupos',
-    loadChildren: () => import('./grupos/grupos.module').then( m => m.GruposPageModule)
-  },
-
 
 ];
 
