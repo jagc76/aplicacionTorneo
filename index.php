@@ -18,6 +18,7 @@ function getDB(){
     $dbConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //Que me añada excepciones y errores
     return $dbConnection;
 }
+<<<<<<< HEAD
 $app->get('/', function (Request $request, Response $response, $args) {
     $response->getBody()->write("Hello world!");
     return $response;
@@ -36,6 +37,25 @@ $app->post('/consultarEquipos', function ($request, $response, $args) {
 }catch(PDOException $e){
 
 			$response->getBody()->write('{"error":{"texto":'.$e->getMessage().'}}');
+=======
+$app->get('/all', function ($request, $response, $args) {  //Defino los servicios
+	try{
+		$db =  getDB(); //Carga los datos
+		$sth = $db->prepare("SELECT emNombre, emApellido, emEdad from empleado");//Consulta
+		$sth->execute(); //Ejecutamos la consulta
+		$test = $sth->fetchAll(PDO::FETCH_ASSOC);//Guardar los resultados de la consulta
+//Verificar si se ha cargado algo
+		if($test){
+			$response->getBody()->write(json_encode($test)); //write Escribe la respuesta como texto, pero necesito un Json
+			$db = null;//Cerrar la conexion con la base de datos
+		}
+else{
+			$response->getBody()->write('{"error":"error"}');
+		}
+	}
+catch(PDOException $e){
+			$response->getBody()->write('{"error":{"texto":'.$e->getMessage().'}}'); //En caso que se halla generado algún error
+>>>>>>> 6929e83fad77e631eba58605272345904594ac21
 		}
     return $response
     ->withHeader('Content-Type', 'application/json');
