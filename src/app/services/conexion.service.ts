@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class ConexiónService {
+export class ConexionService {
 
   constructor(public http: HttpClient) { }
   myHttp = "http://127.0.0.1:80" //Dirección backend

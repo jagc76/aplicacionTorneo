@@ -7,9 +7,9 @@ import { ConexionService } from '../services/conexion.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit{
-
+  bddEmpleado: any;
   constructor(private conexion: ConexionService) {}
-  
+
 
   ngOnInit() {
     this.listar();
@@ -18,7 +18,7 @@ export class HomePage implements OnInit{
   listar() {
     this.conexion.getAll()
     .then(
-      Data =>{
+      data =>{
         this.bddEmpleado = data;
       }
     )

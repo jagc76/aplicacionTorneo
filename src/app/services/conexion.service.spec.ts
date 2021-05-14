@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ConexiónService } from './conexión.service';
+import { ConexionService } from './conexion.service';
 
 describe('ConexiónService', () => {
-  let service: ConexiónService;
+  let service: ConexionService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ConexiónService);
+    service = TestBed.inject(ConexionService);
   });
 
   it('should be created', () => {
