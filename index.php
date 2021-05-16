@@ -20,13 +20,13 @@ function getDB(){
 }
 
 //      CONSULTAR
-$app->get('/all', function ($request, $response, $args) {  //Defino los servicios
+$app->get('/consultarEquipos', function ($request, $response, $args) {  //Defino los servicios
 	try{
 		$db =  getDB(); //Carga los datos
 		$sth = $db->prepare("SELECT * FROM torneovoleibol.equipos;");//Consulta
 		$sth->execute(); //Ejecutamos la consulta
 		$test = $sth->fetchAll(PDO::FETCH_ASSOC);//Guardar los resultados de la consulta
-    //Verificar si se ha cargado algo
+    //    Verificar si se ha cargado algo
 		if($test){
 			$response->getBody()->write(json_encode($test)); //write Escribe la respuesta como texto, pero necesito un Json
 			$db = null;//Cerrar la conexion con la base de datos
