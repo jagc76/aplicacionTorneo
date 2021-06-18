@@ -8,7 +8,9 @@ export class ConexionService {
 
   constructor(public http: HttpClient) { }
 
-  myHttp = "http://127.0.0.1:80" //Dirección backend
+  // myHttp = "http://127.0.0.1:80" // Dirección backend en localhost
+  myHttp = "https://irresolvable-escort.000webhostapp.com" // Dirección backend en hostingweb
+
 
   getAll(){
     return this.http.get(
