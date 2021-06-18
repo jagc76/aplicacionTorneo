@@ -12,7 +12,19 @@
   <ion-card class="tabla">
     <ion-item color="secondary" class="ion-text-center">
       <ion-label>
-        <h5>Grupo 1</h5>
+        <h5>Grupo A</h5>
+      </ion-label>
+    </ion-item>
+    <ion-list>
+      <ion-item *ngFor="let equipo of equipos" class="ion-text-center">
+        <ion-label>{{equipo.Nombre_Equipo}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <ion-card class="tabla">
+    <ion-item color="secondary" class="ion-text-center">
+      <ion-label>
+        <h5>Grupo B</h5>
       </ion-label>
     </ion-item>
     <ion-list>
