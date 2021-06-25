@@ -17,4 +17,9 @@ export class ConexionService {
         this.myHttp+"/consultarEquipos")
         .toPromise();
   }
+  /* addEquipos(){
+    return this.http.post(
+      this.myHttp+"/add", JSON.stringify(data))
+      .toPromise();
+  } */
 }
