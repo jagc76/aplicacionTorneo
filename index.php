@@ -19,11 +19,12 @@ function getDB()
     return $dbConnection;
 }
 
-//      CONSULTAR
-$app->get('/consultarEquipos', function ($request, $response) { //Defino los servicios
+//      CONSULTAR CONDICIONANDO SELECT RECIBIENDO PARAMETROS
+$app->get('/consultarEquipos/{letraGrupo}', function ($request, $response, $letraGrupo) { //Defino los servicios
     try {
         $db = getDB(); //Carga los datos
-        $sth = $db->prepare("SELECT Nombre_Equipo FROM torneovoleibol.equipos;"); //Consulta
+        $sth = $db->prepare("SELECT Nombre_Equipo FROM torneovoleibol.equipos WHERE grupo = :letraGrupo;"); //Consulta CONDICIONADA CON WHERE
+        $sth->bindParam(":letraGrupo", $letraGrupo["letraGrupo"], PDO::PARAM_STR_CHAR); //  EL PARAMETRO PUEDE TENER CUALQUIER TIPADO EJEMPLO: PDO::PARAM_INT
         $sth->execute(); //Ejecutamos la consulta
         $test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
         //    Verificar si se ha cargado algo
@@ -44,26 +45,47 @@ $app->addErrorMiddleware(true, true, true);
 
 $app->run();
 
+/* //      CONSULTAR SIN WHERE
+$app->get('/consultarEquipos', function ($request, $response) { //Defino los servicios
+try {
+$db = getDB(); //Carga los datos
+$sth = $db->prepare("SELECT Nombre_Equipo FROM torneovoleibol.equipos;"); //Consulta
+$sth->execute(); //Ejecutamos la consulta
+$test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
+//    Verificar si se ha cargado algo
+if ($test) {
+$response->getBody()->write(json_encode($test)); //write Escribe la respuesta como texto, pero necesito un Json
+$db = null; //Cerrar la conexion con la base de datos
+} else {
+$response->getBody()->write('{"error":"error"}');
+}
+} catch (PDOException $e) {
+$response->getBody()->write('{"error":{"texto":' . $e->getMessage() . '}}'); //En caso que se halla generado algún error
+}
+return $response
+->withHeader('Content-Type', 'application/json');
+}); */
+
 /* //      CONSULTAR CONDICIONANDO SELECT RECIBIENDO PARAMETROS
 $app->get('/consultarEquipos/{parametro}', function ($request, $response, $variableParametro) { //Defino los servicios
-    try {
-        $db = getDB(); //Carga los datos
-        $sth = $db->prepare("SELECT Nombre_Equipo FROM torneovoleibol.equipos WHERE Cod_Equipo = :parametro;"); //Consulta CONDICIONADA CON WHERE
-        $sth->bindParam(":parametro", $variableParametro["parametro"], PDO::PARAM_INT); //  EL PARAMETRO PUEDE TENER CUALQUIER TIPADO EJEMPLO: PDO::PARAM_STR
-        $sth->execute(); //Ejecutamos la consulta
-        $test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
-        //    Verificar si se ha cargado algo
-        if ($test) {
-            $response->getBody()->write(json_encode($test)); //write Escribe la respuesta como texto, pero necesito un Json
-            $db = null; //Cerrar la conexion con la base de datos
-        } else {
-            $response->getBody()->write('{"error":"error"}');
-        }
-    } catch (PDOException $e) {
-        $response->getBody()->write('{"error":{"texto":' . $e->getMessage() . '}}'); //En caso que se halla generado algún error
-    }
-    return $response
-        ->withHeader('Content-Type', 'application/json');
+try {
+$db = getDB(); //Carga los datos
+$sth = $db->prepare("SELECT Nombre_Equipo FROM torneovoleibol.equipos WHERE Cod_Equipo = :parametro;"); //Consulta CONDICIONADA CON WHERE
+$sth->bindParam(":parametro", $variableParametro["parametro"], PDO::PARAM_INT); //  EL PARAMETRO PUEDE TENER CUALQUIER TIPADO EJEMPLO: PDO::PARAM_STR
+$sth->execute(); //Ejecutamos la consulta
+$test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
+//    Verificar si se ha cargado algo
+if ($test) {
+$response->getBody()->write(json_encode($test)); //write Escribe la respuesta como texto, pero necesito un Json
+$db = null; //Cerrar la conexion con la base de datos
+} else {
+$response->getBody()->write('{"error":"error"}');
+}
+} catch (PDOException $e) {
+$response->getBody()->write('{"error":{"texto":' . $e->getMessage() . '}}'); //En caso que se halla generado algún error
+}
+return $response
+->withHeader('Content-Type', 'application/json');
 }); */
 
 /*  funcion agregar en la tabla empleados.

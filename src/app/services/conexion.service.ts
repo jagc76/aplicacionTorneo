@@ -12,9 +12,18 @@ export class ConexionService {
   // myHttp = "https://irresolvable-escort.000webhostapp.com" // Dirección backend en hostingweb
 
 
-  getAll(){
+  /* getAll(){
     return this.http.get(
         this.myHttp+"/consultarEquipos")
+        .toPromise();
+  } */
+
+  /* SE USA PARA ENVIAR UN PARAMETRO DESDE LA INTERFAZ USANDO EN [(ngModel)]
+  y guardarlo en una variable dependiendo su tipo debajo del constructor
+  EN ESTE CASO SE ENVIO DESDE DEL TS DEL FRONTEND!!!*/
+  consultarEquiposPorGrupo(letraGrupo: string){
+    return this.http.get(
+        this.myHttp+"/consultarEquipos/"+letraGrupo)
         .toPromise();
   }
 }
