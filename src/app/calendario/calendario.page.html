@@ -9,37 +9,52 @@
 
 <ion-content>
   <ion-card>
+    <!-- SE ELIGE LA RONDA PARA MOSTRAR LOS ENCUENTROS -->
     <ion-item color="primary">
       <ion-label>Elija una ronda</ion-label>
-      <ion-select>
-        <ion-select-option value="rondaGrupos"
-          >Ronda de Grupos</ion-select-option>
-        <ion-select-option value="octavosDeFinal"
-          >Octavos de Final</ion-select-option>
-        <ion-select-option value="cuartosDeFinal"
-          >Cuartos de Final</ion-select-option>
-        <ion-select-option value="semifinal">Semifinal</ion-select-option>
-        <ion-select-option value="final">Final</ion-select-option>
+      <ion-select (ionChange)="obtenerOpcion($event)">
+        <ion-select-option value="1">Grupos</ion-select-option>
+        <ion-select-option value="2">Octavos</ion-select-option>
+        <ion-select-option value="3">Cuartos</ion-select-option>
+        <ion-select-option value="4">Semifinal</ion-select-option>
+        <ion-select-option value="5">Finales</ion-select-option>
       </ion-select>
     </ion-item>
+
     <ion-card-subtitle color="tertiary">
       Elija un partido para ver mas informacion
     </ion-card-subtitle>
+
+    <!-- <ion-item *ngIf="!seMostroEncuentros; else listaDeEncuntros">
+      <h1 color="danger" class="ion-text-center">
+        <b>Debe seleccionar una ronda para visualizar encuentros aqui</b>
+      </h1>
+    </ion-item> -->
+
+    <!-- LISTA DE ENCUENTROS DE LA RONDA SELECCIONADA -->
+    <!-- <ng-template #listaDeEncuntros> -->
     <ion-list>
-      <ion-item routerLink="../encuentro">
+      <ion-item
+        routerLink="../encuentro"
+        *ngFor="let encuentro of encuentros"
+        class="ion-text-center"
+      >
         <ion-grid>
           <ion-row>
-            <ion-col size="3" class="ion-text-center"> Fecha </ion-col>
+            <ion-col size="3" class="ion-text-center"
+              >{{encuentro.Fecha}}</ion-col
+            >
             <ion-col size="4" class="ion-text-center" color="primary">
-              <b> 1 </b>
+              {{encuentro.Cod_Equipo1}}
             </ion-col>
             <ion-col size="1" class="ion-text-center"> vs </ion-col>
             <ion-col size="4" class="ion-text-center" color="primary">
-              <b> 2 </b>
+              {{encuentro.Cod_Equipo2}}
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-item>
     </ion-list>
+    <!-- <ng-template> -->
   </ion-card>
 </ion-content>

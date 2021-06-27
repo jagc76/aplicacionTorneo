@@ -19,7 +19,7 @@ function getDB()
     return $dbConnection;
 }
 
-//      CONSULTAR CONDICIONANDO SELECT RECIBIENDO PARAMETROS
+//  SE CONSULTAN LOS GRUPOS DE LA BASE DE DATOS
 $app->get('/consultarEquipos/{letraGrupo}', function ($request, $response, $letraGrupo) { //Defino los servicios
     try {
         $db = getDB(); //Carga los datos
@@ -39,6 +39,28 @@ $app->get('/consultarEquipos/{letraGrupo}', function ($request, $response, $letr
     }
     return $response
         ->withHeader('Content-Type', 'application/json');
+});
+
+//  SE CONSULTAN LOS ENCUENTROS PERO SE RECIBE COMO PARAMETRO LA RONDA, PARA CONSULTAR SOLO LOS ENCUENTROS DE ESA RONDA
+$app->get('/consultarEncuentros/{numeroDeEncuentros}', function ($request, $response, $numeroDeEncuentros) { //Defino los servicios
+  try {
+      $db = getDB(); //Carga los datos
+      $sth = $db->prepare("SELECT Fecha, Cod_Equipo1, Cod_Equipo2 FROM torneovoleibol.encuentro WHERE Cod_Encuentro < :numeroDeEncuentros;"); //Consulta CONDICIONADA CON WHERE
+      $sth->bindParam(":numeroDeEncuentros", $numeroDeEncuentros["numeroDeEncuentros"], PDO::PARAM_INT); //  EL PARAMETRO PUEDE TENER CUALQUIER TIPADO EJEMPLO: PDO::PARAM_INT
+      $sth->execute(); //Ejecutamos la consulta
+      $test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
+      //    Verificar si se ha cargado algo
+      if ($test) {
+          $response->getBody()->write(json_encode($test)); //write Escribe la respuesta como texto, pero necesito un Json
+          $db = null; //Cerrar la conexion con la base de datos
+      } else {
+          $response->getBody()->write('{"error":"error"}');
+      }
+  } catch (PDOException $e) {
+      $response->getBody()->write('{"error":{"texto":' . $e->getMessage() . '}}'); //En caso que se halla generado algún error
+  }
+  return $response
+      ->withHeader('Content-Type', 'application/json');
 });
 
 $app->addErrorMiddleware(true, true, true);

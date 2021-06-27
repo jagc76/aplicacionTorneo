@@ -21,11 +21,18 @@ export class ConexionService {
   /* SE USA PARA ENVIAR UN PARAMETRO DESDE LA INTERFAZ USANDO EN [(ngModel)]
   y guardarlo en una variable dependiendo su tipo debajo del constructor
   EN ESTE CASO SE ENVIO DESDE DEL TS DEL FRONTEND!!!*/
-  consultarEquiposPorGrupo(letraGrupo: string){
+  consultarEquiposPorGrupo(letraGrupo: string) {
     return this.http.get(
-        this.myHttp+"/consultarEquipos/"+letraGrupo)
-        .toPromise();
+      this.myHttp + "/consultarEquipos/" + letraGrupo)
+      .toPromise();
   }
+
+  consultarEncuentros(numeroDeEncuentros: number) {
+    return this.http.get(
+      this.myHttp + "/consultarEncuentros/" + numeroDeEncuentros)
+      .toPromise();
+  }
+
   /* addEquipos(){
     return this.http.post(
       this.myHttp+"/add", JSON.stringify(data))
