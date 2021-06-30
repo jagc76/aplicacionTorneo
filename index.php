@@ -45,7 +45,7 @@ $app->get('/consultarEquipos/{letraGrupo}', function ($request, $response, $letr
 $app->get('/consultarEncuentros/{numeroDeEncuentros}', function ($request, $response, $numeroDeEncuentros) { //Defino los servicios
   try {
       $db = getDB(); //Carga los datos
-      $sth = $db->prepare("SELECT Fecha, Cod_Equipo1, Cod_Equipo2 FROM torneovoleibol.encuentro WHERE Cod_Encuentro < :numeroDeEncuentros;"); //Consulta CONDICIONADA CON WHERE
+      $sth = $db->prepare("SELECT Cod_Encuentro, Fecha, Cod_Equipo1, Cod_Equipo2 FROM torneovoleibol.encuentro WHERE Cod_Encuentro < :numeroDeEncuentros;"); //Consulta CONDICIONADA CON WHERE
       $sth->bindParam(":numeroDeEncuentros", $numeroDeEncuentros["numeroDeEncuentros"], PDO::PARAM_INT); //  EL PARAMETRO PUEDE TENER CUALQUIER TIPADO EJEMPLO: PDO::PARAM_INT
       $sth->execute(); //Ejecutamos la consulta
       $test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
