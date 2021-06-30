@@ -33,6 +33,30 @@ export class ConexionService {
       .toPromise();
   }
 
+  consultarInfoEncuentro(codigoEncuentro: any) {
+    return this.http.get(
+      this.myHttp + "/consultarInfoEncuentro/" + codigoEncuentro)
+      .toPromise();
+  }
+
+  consultarNombreDeJuez1(idjuez1: string) {
+    return this.http.get(
+      this.myHttp + "/consultarNombreDeJuez1/" + idjuez1)
+      .toPromise();
+  }
+
+  consultarNombreDeJuez2(idjuez2: string) {
+    return this.http.get(
+      this.myHttp + "/consultarNombreDeJuez2/" + idjuez2)
+      .toPromise();
+  }
+
+  consultarNombreDeJuez3(idjuez3: string) {
+    return this.http.get(
+      this.myHttp + "/consultarNombreDeJuez3/" + idjuez3)
+      .toPromise();
+  }
+
   /* addEquipos(){
     return this.http.post(
       this.myHttp+"/add", JSON.stringify(data))

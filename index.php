@@ -43,10 +43,99 @@ $app->get('/consultarEquipos/{letraGrupo}', function ($request, $response, $letr
 
 //  SE CONSULTAN LOS ENCUENTROS PERO SE RECIBE COMO PARAMETRO LA RONDA, PARA CONSULTAR SOLO LOS ENCUENTROS DE ESA RONDA
 $app->get('/consultarEncuentros/{numeroDeEncuentros}', function ($request, $response, $numeroDeEncuentros) { //Defino los servicios
+    try {
+        $db = getDB(); //Carga los datos
+        $sth = $db->prepare("SELECT Cod_Encuentro, Fecha, Cod_Equipo1, Cod_Equipo2 FROM torneovoleibol.encuentro WHERE Cod_Encuentro < :numeroDeEncuentros ORDER BY Fecha;"); //Consulta CONDICIONADA CON WHERE
+        $sth->bindParam(":numeroDeEncuentros", $numeroDeEncuentros["numeroDeEncuentros"], PDO::PARAM_INT); //  EL PARAMETRO PUEDE TENER CUALQUIER TIPADO EJEMPLO: PDO::PARAM_INT
+        $sth->execute(); //Ejecutamos la consulta
+        $test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
+        //    Verificar si se ha cargado algo
+        if ($test) {
+            $response->getBody()->write(json_encode($test)); //write Escribe la respuesta como texto, pero necesito un Json
+            $db = null; //Cerrar la conexion con la base de datos
+        } else {
+            $response->getBody()->write('{"error":"error"}');
+        }
+    } catch (PDOException $e) {
+        $response->getBody()->write('{"error":{"texto":' . $e->getMessage() . '}}'); //En caso que se halla generado algún error
+    }
+    return $response
+        ->withHeader('Content-Type', 'application/json');
+});
+
+//  SE CONSULTA LA INFORMACION DEL ENCUENTRO PERO SE RECIBE COMO PARAMETRO EL CODIGO DEL MISMO, PARA CONSULTAR SOLO LA INFO DE ESE ENCUENTRO
+$app->get('/consultarInfoEncuentro/{codigoEncuentro}', function ($request, $response, $codigoEncuentro) { //Defino los servicios
+    try {
+        $db = getDB(); //Carga los datos
+        $sth = $db->prepare("SELECT * FROM torneovoleibol.encuentro WHERE Cod_Encuentro = :codigoEncuentro;"); //Consulta CONDICIONADA CON WHERE
+        $sth->bindParam(":codigoEncuentro", $codigoEncuentro["codigoEncuentro"], PDO::PARAM_STR); //  EL PARAMETRO PUEDE TENER CUALQUIER TIPADO EJEMPLO: PDO::PARAM_INT
+        $sth->execute(); //Ejecutamos la consulta
+        $test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
+        //    Verificar si se ha cargado algo
+        if ($test) {
+            $response->getBody()->write(json_encode($test)); //write Escribe la respuesta como texto, pero necesito un Json
+            $db = null; //Cerrar la conexion con la base de datos
+        } else {
+            $response->getBody()->write('{"error":"error"}');
+        }
+    } catch (PDOException $e) {
+        $response->getBody()->write('{"error":{"texto":' . $e->getMessage() . '}}'); //En caso que se halla generado algún error
+    }
+    return $response
+        ->withHeader('Content-Type', 'application/json');
+});
+
+//  SE CONSULTA LOS NOMBRES DE LOS JUECES DEL ENCUENTRO ENVIANDO COMO PARAMETRO EL ID DE CADA JUEZ
+// SE CONSULTA EL NOMBRE DEL JUEZ NUMERO 1
+$app->get('/consultarNombreDeJuez1/{idjuez1}', function ($request, $response, $idjuez1) { //Defino los servicios
   try {
       $db = getDB(); //Carga los datos
-      $sth = $db->prepare("SELECT Cod_Encuentro, Fecha, Cod_Equipo1, Cod_Equipo2 FROM torneovoleibol.encuentro WHERE Cod_Encuentro < :numeroDeEncuentros;"); //Consulta CONDICIONADA CON WHERE
-      $sth->bindParam(":numeroDeEncuentros", $numeroDeEncuentros["numeroDeEncuentros"], PDO::PARAM_INT); //  EL PARAMETRO PUEDE TENER CUALQUIER TIPADO EJEMPLO: PDO::PARAM_INT
+      $sth = $db->prepare("SELECT Nombre FROM torneovoleibol.jueces where idJuez = :idjuez1;"); //Consulta CONDICIONADA CON WHERE
+      $sth->bindParam(":idjuez1", $idjuez1["idjuez1"], PDO::PARAM_STR); //  EL PARAMETRO PUEDE TENER CUALQUIER TIPADO EJEMPLO: PDO::PARAM_INT
+      $sth->execute(); //Ejecutamos la consulta
+      $test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
+      //    Verificar si se ha cargado algo
+      if ($test) {
+          $response->getBody()->write(json_encode($test)); //write Escribe la respuesta como texto, pero necesito un Json
+          $db = null; //Cerrar la conexion con la base de datos
+      } else {
+          $response->getBody()->write('{"error":"error"}');
+      }
+  } catch (PDOException $e) {
+      $response->getBody()->write('{"error":{"texto":' . $e->getMessage() . '}}'); //En caso que se halla generado algún error
+  }
+  return $response
+      ->withHeader('Content-Type', 'application/json');
+});
+
+// SE CONSULTA EL NOMBRE DEL JUEZ NUMERO 2
+$app->get('/consultarNombreDeJuez2/{idjuez2}', function ($request, $response, $idjuez2) { //Defino los servicios
+  try {
+      $db = getDB(); //Carga los datos
+      $sth = $db->prepare("SELECT Nombre FROM torneovoleibol.jueces where idJuez = :idjuez2;"); //Consulta CONDICIONADA CON WHERE
+      $sth->bindParam(":idjuez2", $idjuez2["idjuez2"], PDO::PARAM_STR); //  EL PARAMETRO PUEDE TENER CUALQUIER TIPADO EJEMPLO: PDO::PARAM_INT
+      $sth->execute(); //Ejecutamos la consulta
+      $test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
+      //    Verificar si se ha cargado algo
+      if ($test) {
+          $response->getBody()->write(json_encode($test)); //write Escribe la respuesta como texto, pero necesito un Json
+          $db = null; //Cerrar la conexion con la base de datos
+      } else {
+          $response->getBody()->write('{"error":"error"}');
+      }
+  } catch (PDOException $e) {
+      $response->getBody()->write('{"error":{"texto":' . $e->getMessage() . '}}'); //En caso que se halla generado algún error
+  }
+  return $response
+      ->withHeader('Content-Type', 'application/json');
+});
+
+// SE CONSULTA EL NOMBRE DEL JUEZ NUMERO 3
+$app->get('/consultarNombreDeJuez3/{idjuez3}', function ($request, $response, $idjuez3) { //Defino los servicios
+  try {
+      $db = getDB(); //Carga los datos
+      $sth = $db->prepare("SELECT Nombre FROM torneovoleibol.jueces where idJuez = :idjuez3;"); //Consulta CONDICIONADA CON WHERE
+      $sth->bindParam(":idjuez3", $idjuez3["idjuez3"], PDO::PARAM_STR); //  EL PARAMETRO PUEDE TENER CUALQUIER TIPADO EJEMPLO: PDO::PARAM_INT
       $sth->execute(); //Ejecutamos la consulta
       $test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
       //    Verificar si se ha cargado algo

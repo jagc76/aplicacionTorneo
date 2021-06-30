@@ -24,7 +24,7 @@ const routes: Routes = [
     loadChildren: () => import('./resultados/resultados.module').then( m => m.ResultadosPageModule)
   },
   {
-    path: 'encuentro',
+    path: 'encuentro/:codigoEncuentro',
     loadChildren: () => import('./encuentro/encuentro.module').then( m => m.EncuentroPageModule)
   },
   {

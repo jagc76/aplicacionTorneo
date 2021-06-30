@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConexionService } from '../services/conexion.service';
 
 @Component({
@@ -11,8 +12,10 @@ export class ResultadosPage implements OnInit {
   rondaSeleccionada: number;
   encuentros: any;
   numeroDeEncuentros: number;
+  seMostroEncuentros: boolean = false;
 
-  constructor(private conexion: ConexionService) { }
+  constructor(private conexion: ConexionService,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -34,6 +37,11 @@ export class ResultadosPage implements OnInit {
           console.log("Error." + error);
         }
       )
+    this.seMostroEncuentros = true;
+  }
+
+  enviarInfoEncuentro(i) {
+    this.router.navigate(['../encuentro', this.encuentros[i].Cod_Encuentro]);
   }
 
 }
