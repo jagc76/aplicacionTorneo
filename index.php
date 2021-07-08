@@ -200,7 +200,7 @@ $app->get('/consultarEquiposDeOctavos', function ($request, $response) { //Defin
 $app->get('/consultarEquiposDeCuartos', function ($request, $response) { //Defino los servicios
   try {
       $db = getDB(); //Carga los datos
-      $sth = $db->prepare(" SELECT Nombre_Equipo, cuartos FROM torneovoleibol.equipos
+      $sth = $db->prepare(" SELECT Nombre_Equipo FROM torneovoleibol.equipos
                             where cuartos is not null order by cuartos;"); //Consulta CONDICIONADA CON WHERE
       $sth->execute(); //Ejecutamos la consulta
       $test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
@@ -222,7 +222,7 @@ $app->get('/consultarEquiposDeCuartos', function ($request, $response) { //Defin
 $app->get('/consultarEquiposDeSemifinales', function ($request, $response) { //Defino los servicios
   try {
       $db = getDB(); //Carga los datos
-      $sth = $db->prepare(" SELECT Nombre_Equipo, semifinales FROM torneovoleibol.equipos
+      $sth = $db->prepare(" SELECT Nombre_Equipo FROM torneovoleibol.equipos
                             where semifinales is not null order by semifinales;"); //Consulta CONDICIONADA CON WHERE
       $sth->execute(); //Ejecutamos la consulta
       $test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
@@ -244,7 +244,7 @@ $app->get('/consultarEquiposDeSemifinales', function ($request, $response) { //D
 $app->get('/consultarEquiposDeFinales', function ($request, $response) { //Defino los servicios
   try {
       $db = getDB(); //Carga los datos
-      $sth = $db->prepare(" SELECT Nombre_Equipo, finales FROM torneovoleibol.equipos
+      $sth = $db->prepare(" SELECT Nombre_Equipo FROM torneovoleibol.equipos
                             where finales is not null order by finales;"); //Consulta CONDICIONADA CON WHERE
       $sth->execute(); //Ejecutamos la consulta
       $test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
