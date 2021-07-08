@@ -57,6 +57,36 @@ export class ConexionService {
       .toPromise();
   }
 
+  consultarRondaActual() {
+    return this.http.get(
+      this.myHttp + "/consultarRondaActual")
+      .toPromise();
+  }
+
+  consultarEquiposDeOctavos() {
+    return this.http.get(
+      this.myHttp + "/consultarEquiposDeOctavos")
+      .toPromise();
+  }
+
+  consultarEquiposDeCuartos() {
+    return this.http.get(
+      this.myHttp + "/consultarEquiposDeCuartos")
+      .toPromise();
+  }
+
+  consultarEquiposDeSemifinales() {
+    return this.http.get(
+      this.myHttp + "/consultarEquiposDeSemifinales")
+      .toPromise();
+  }
+
+  consultarEquiposDeFinales() {
+    return this.http.get(
+      this.myHttp + "/consultarEquiposDeFinales")
+      .toPromise();
+  }
+
   /* addEquipos(){
     return this.http.post(
       this.myHttp+"/add", JSON.stringify(data))

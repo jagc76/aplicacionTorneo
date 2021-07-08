@@ -1,4 +1,5 @@
 <?php
+
 use Slim\Factory\AppFactory;
 
 header("Access-Control-Allow-Origin: *");
@@ -104,7 +105,7 @@ $app->get('/consultarNombreDeJuez1/{idjuez1}', function ($request, $response, $i
   } catch (PDOException $e) {
       $response->getBody()->write('{"error":{"texto":' . $e->getMessage() . '}}'); //En caso que se halla generado algún error
   }
-  return $response
+    return $response
       ->withHeader('Content-Type', 'application/json');
 });
 
@@ -126,7 +127,7 @@ $app->get('/consultarNombreDeJuez2/{idjuez2}', function ($request, $response, $i
   } catch (PDOException $e) {
       $response->getBody()->write('{"error":{"texto":' . $e->getMessage() . '}}'); //En caso que se halla generado algún error
   }
-  return $response
+    return $response
       ->withHeader('Content-Type', 'application/json');
 });
 
@@ -148,7 +149,116 @@ $app->get('/consultarNombreDeJuez3/{idjuez3}', function ($request, $response, $i
   } catch (PDOException $e) {
       $response->getBody()->write('{"error":{"texto":' . $e->getMessage() . '}}'); //En caso que se halla generado algún error
   }
-  return $response
+    return $response
+      ->withHeader('Content-Type', 'application/json');
+});
+
+    // SE CONSULTA LA RONDA ACTUAL DEL TORNEO
+$app->get('/consultarRondaActual', function ($request, $response) { //Defino los servicios
+  try {
+      $db = getDB(); //Carga los datos
+    $sth = $db->prepare("SELECT rondaActual FROM torneovoleibol.torneo where idTorneo = 1193;"); // !!!!!!!!!!!!!! EL NUMERO DEL TORNEO DEBE VENIR COMO PARAMETRO HAY QUE CORREGIR ESO
+    $sth->execute(); //Ejecutamos la consulta
+    $test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
+    //    Verificar si se ha cargado algo
+    if ($test) {
+        $response->getBody()->write(json_encode($test)); //write Escribe la respuesta como texto, pero necesito un Json
+    $db = null; //Cerrar la conexion con la base de datos
+    } else {
+        $response->getBody()->write('{"error":"error"}');
+    }
+  } catch (PDOException $e) {
+      $response->getBody()->write('{"error":{"texto":' . $e->getMessage() . '}}'); //En caso que se halla generado algún error
+  }
+    return $response
+  ->withHeader('Content-Type', 'application/json');
+});
+
+// SE CONSULTAN LOS EQUIPOS DE LOS OCTAVOS DE FINAL
+$app->get('/consultarEquiposDeOctavos', function ($request, $response) { //Defino los servicios
+  try {
+      $db = getDB(); //Carga los datos
+      $sth = $db->prepare(" SELECT Nombre_Equipo FROM torneovoleibol.equipos
+                            where octavos is not null order by octavos;"); //Consulta CONDICIONADA CON WHERE
+      $sth->execute(); //Ejecutamos la consulta
+      $test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
+      //    Verificar si se ha cargado algo
+      if ($test) {
+          $response->getBody()->write(json_encode($test)); //write Escribe la respuesta como texto, pero necesito un Json
+          $db = null; //Cerrar la conexion con la base de datos
+      } else {
+          $response->getBody()->write('{"error":"error"}');
+      }
+  } catch (PDOException $e) {
+      $response->getBody()->write('{"error":{"texto":' . $e->getMessage() . '}}'); //En caso que se halla generado algún error
+  }
+    return $response
+      ->withHeader('Content-Type', 'application/json');
+});
+
+// SE CONSULTAN LOS EQUIPOS DE LOS CUARTOS DE FINAL
+$app->get('/consultarEquiposDeCuartos', function ($request, $response) { //Defino los servicios
+  try {
+      $db = getDB(); //Carga los datos
+      $sth = $db->prepare(" SELECT Nombre_Equipo, cuartos FROM torneovoleibol.equipos
+                            where cuartos is not null order by cuartos;"); //Consulta CONDICIONADA CON WHERE
+      $sth->execute(); //Ejecutamos la consulta
+      $test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
+      //    Verificar si se ha cargado algo
+      if ($test) {
+          $response->getBody()->write(json_encode($test)); //write Escribe la respuesta como texto, pero necesito un Json
+          $db = null; //Cerrar la conexion con la base de datos
+      } else {
+          $response->getBody()->write('{"error":"error"}');
+      }
+  } catch (PDOException $e) {
+      $response->getBody()->write('{"error":{"texto":' . $e->getMessage() . '}}'); //En caso que se halla generado algún error
+  }
+    return $response
+      ->withHeader('Content-Type', 'application/json');
+});
+
+// SE CONSULTAN LOS EQUIPOS DE SEMIFINALES
+$app->get('/consultarEquiposDeSemifinales', function ($request, $response) { //Defino los servicios
+  try {
+      $db = getDB(); //Carga los datos
+      $sth = $db->prepare(" SELECT Nombre_Equipo, semifinales FROM torneovoleibol.equipos
+                            where semifinales is not null order by semifinales;"); //Consulta CONDICIONADA CON WHERE
+      $sth->execute(); //Ejecutamos la consulta
+      $test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
+      //    Verificar si se ha cargado algo
+      if ($test) {
+          $response->getBody()->write(json_encode($test)); //write Escribe la respuesta como texto, pero necesito un Json
+          $db = null; //Cerrar la conexion con la base de datos
+      } else {
+          $response->getBody()->write('{"error":"error"}');
+      }
+  } catch (PDOException $e) {
+      $response->getBody()->write('{"error":{"texto":' . $e->getMessage() . '}}'); //En caso que se halla generado algún error
+  }
+    return $response
+      ->withHeader('Content-Type', 'application/json');
+});
+
+// SE CONSULTAN LOS EQUIPOS DE FINALES
+$app->get('/consultarEquiposDeFinales', function ($request, $response) { //Defino los servicios
+  try {
+      $db = getDB(); //Carga los datos
+      $sth = $db->prepare(" SELECT Nombre_Equipo, finales FROM torneovoleibol.equipos
+                            where finales is not null order by finales;"); //Consulta CONDICIONADA CON WHERE
+      $sth->execute(); //Ejecutamos la consulta
+      $test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
+      //    Verificar si se ha cargado algo
+      if ($test) {
+          $response->getBody()->write(json_encode($test)); //write Escribe la respuesta como texto, pero necesito un Json
+          $db = null; //Cerrar la conexion con la base de datos
+      } else {
+          $response->getBody()->write('{"error":"error"}');
+      }
+  } catch (PDOException $e) {
+      $response->getBody()->write('{"error":{"texto":' . $e->getMessage() . '}}'); //En caso que se halla generado algún error
+  }
+    return $response
       ->withHeader('Content-Type', 'application/json');
 });
 

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ConexionService } from 'src/app/services/conexion.service';
 
 @Component({
-  selector: 'app-final',
-  templateUrl: './final.page.html',
-  styleUrls: ['./final.page.scss'],
+  selector: 'app-semifinales',
+  templateUrl: './semifinales.page.html',
+  styleUrls: ['./semifinales.page.scss'],
 })
-export class FinalPage implements OnInit {
+export class SemifinalesPage implements OnInit {
 
   rondaActual: number;
   equiposClasificados: any;
@@ -32,7 +32,7 @@ export class FinalPage implements OnInit {
   }
 
   listar() {
-    this.conexion.consultarEquiposDeFinales()
+    this.conexion.consultarEquiposDeSemifinales()
       .then(
         data => {
           this.equiposClasificados = data;
@@ -53,5 +53,4 @@ export class FinalPage implements OnInit {
         }
       )
   }
-
 }
