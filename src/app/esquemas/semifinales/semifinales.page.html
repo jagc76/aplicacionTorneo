@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/esquemas"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Semifinales</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- SE EVALUA SI LA RONDA YA ESTA EN JUEGO PARA DESPLEGAR EL ESQUEMA -->
+
+  <!-- FASE 1 -->
+  <ion-item *ngIf="rondaActual <= 3; then fase1"> </ion-item>
+  <ng-template #fase1>
+    <ion-card class="tabla">
+      <ion-item color="warning" class="ion-text-center alerta">
+        <strong> TODAVIA NO SE ALCANZA ESTA ETAPA DEL TORNEO </strong>
+      </ion-item>
+      <ion-item color="warning" class="ion-text-center alerta">
+        <strong> DEBE ESPERAR A QUE FINALICEN LOS CUARTOS DE FINAL </strong>
+      </ion-item>
+    </ion-card>
+  </ng-template>
+
+  <!-- FASE 2 -->
+  <ion-item *ngIf="rondaActual >= 4; then fase2"> </ion-item>
+  <ng-template #fase2>
+    <ion-card class="tabla">
+      <ion-item color="secondary" class="ion-text-center">
+        <ion-label> Llave 1 </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let equipo of equiposllave1;" class="ion-text-center">
+        <ion-label> {{equipo.Nombre_Equipo}} </ion-label>
+      </ion-item>
+    </ion-card>
+
+    <ion-card class="tabla">
+      <ion-item color="secondary" class="ion-text-center">
+        <ion-label> Llave 2 </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let equipo of equiposllave2;" class="ion-text-center">
+        <ion-label> {{equipo.Nombre_Equipo}} </ion-label>
+      </ion-item>
+    </ion-card>
+  </ng-template>
+</ion-content>
