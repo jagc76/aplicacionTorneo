@@ -87,6 +87,18 @@ export class ConexionService {
       .toPromise();
   }
 
+  consultarMejorJugadora() {
+    return this.http.get(
+      this.myHttp + "/consultarMejorJugadora")
+      .toPromise();
+  }
+
+  consultarMejorEquipo() {
+    return this.http.get(
+      this.myHttp + "/consultarMejorEquipo")
+      .toPromise();
+  }
+
   /* addEquipos(){
     return this.http.post(
       this.myHttp+"/add", JSON.stringify(data))

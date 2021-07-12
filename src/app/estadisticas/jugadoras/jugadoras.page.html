@@ -8,36 +8,27 @@
 </ion-header>
 <ion-content>
   <ion-card>
-    <ion-title class="ion-text-center">Jugadoras</ion-title>
-  </ion-card>
-  <ion-card class="tabla">
-    <ion-grid fixed>
-      <ion-card>
-        <ion-row>
-          <ion-col size="6" class="ion-text-center columna">
-            <ion-item color="secondary">
-              <ion-text>Jugadoras</ion-text>
-            </ion-item>
-          </ion-col>
-          <ion-col size="6" class="ion-text-center columna">
-            <ion-item color="secondary">
-              <ion-text>Puntos</ion-text>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col size="6" class="ion-text-center columna">
-            <ion-item>
-              <ion-text>{{jugadora}}</ion-text>
-            </ion-item>
-          </ion-col>
-          <ion-col size="6" class="ion-text-center columna">
-            <ion-item>
-              <ion-text>Puntos</ion-text>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-      </ion-card>
-    </ion-grid>
-  </ion-card>
+    <ion-row>
+      <ion-col size="6" class="ion-text-center columna">
+        <ion-item color="secondary">
+          <ion-text>Jugadoras</ion-text>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6" class="ion-text-center columna">
+        <ion-item color="secondary">
+          <ion-text>Puntos</ion-text>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6" class="ion-text-center columna">
+        <ion-item *ngFor="let miJugadora of bddJugadora">
+          <ion-text>{{miJugadora.Nombre}}</ion-text>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6" class="ion-text-center columna">
+        <ion-item *ngFor="let misPuntos of bddPuntos">
+          <ion-text>{{misPuntos.Puntos_Anotados}}</ion-text>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-card>  
 </ion-content>
