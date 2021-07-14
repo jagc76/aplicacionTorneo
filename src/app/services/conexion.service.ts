@@ -27,9 +27,9 @@ export class ConexionService {
       .toPromise();
   }
 
-  consultarEncuentros(numeroDeEncuentros: number) {
+  consultarEncuentros(numeroDeEncuentros: number, rangoInicial: number) {
     return this.http.get(
-      this.myHttp + "/consultarEncuentros/" + numeroDeEncuentros)
+      this.myHttp + "/consultarEncuentros/" + numeroDeEncuentros +"/"+ rangoInicial)
       .toPromise();
   }
 

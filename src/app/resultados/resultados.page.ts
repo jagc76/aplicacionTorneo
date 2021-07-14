@@ -12,6 +12,7 @@ export class ResultadosPage implements OnInit {
   rondaSeleccionada: number;
   encuentros: any;
   numeroDeEncuentros: number;
+  rangoInicial: number;
   seMostroEncuentros: boolean = false;
 
   constructor(private conexion: ConexionService,
@@ -24,9 +25,22 @@ export class ResultadosPage implements OnInit {
   obtenerOpcion(event: CustomEvent) {
     this.rondaSeleccionada = event.detail.value;
     if (this.rondaSeleccionada == 1) {
+      this.rangoInicial = -1;
       this.numeroDeEncuentros = 48;
+    } else if (this.rondaSeleccionada == 2) {
+      this.rangoInicial = 47;
+      this.numeroDeEncuentros = 56;
+    } else if (this.rondaSeleccionada == 3) {
+      this.rangoInicial = 55;
+      this.numeroDeEncuentros = 60;
+    } else if (this.rondaSeleccionada == 4) {
+      this.rangoInicial = 59;
+      this.numeroDeEncuentros = 62;
+    } else if (this.rondaSeleccionada == 5) {
+      this.rangoInicial = 61;
+      this.numeroDeEncuentros = 64;
     }
-    this.conexion.consultarEncuentros(this.numeroDeEncuentros)
+    this.conexion.consultarEncuentros(this.numeroDeEncuentros, this.rangoInicial)
       .then(
         data => {
           this.encuentros = data;

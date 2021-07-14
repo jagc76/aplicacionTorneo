@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
@@ -10,7 +10,7 @@
 <ion-content>
   <ion-card>
     <!-- SE ELIGE LA RONDA PARA MOSTRAR LOS ENCUENTROS -->
-    <ion-item color="primary">
+    <ion-item color="secondary">
       <ion-label>Elija una ronda</ion-label>
       <ion-select (ionChange)="obtenerOpcion($event)">
         <ion-select-option value="1">Grupos</ion-select-option>
@@ -21,15 +21,23 @@
       </ion-select>
     </ion-item>
 
-    <ion-card-subtitle color="tertiary">
-      Elija un partido para ver mas informacion
-    </ion-card-subtitle>
-
-    <ion-item *ngIf="!seMostroEncuentros;">
-      <h1 color="danger" class="ion-text-center">
-        <b>Debe seleccionar una ronda para visualizar encuentros aqui</b>
+    <ion-item
+      color="warning"
+      class="ion-text-center"
+      *ngIf="!seMostroEncuentros; else contenido"
+    >
+      <ion-thumbnail id="up-arrow" slot="end">
+        <ion-icon name="arrow-up-outline"></ion-icon>
+      </ion-thumbnail>
+      <h1>
+        <b>Debe seleccionar una ronda para visualizar encuentros aquí</b>
       </h1>
     </ion-item>
+
+    <ng-template #contenido>
+      <ion-card-subtitle color="tertiary">
+        Elija un partido para ver mas informacion
+      </ion-card-subtitle>
 
     <!-- LISTA DE ENCUENTROS DE LA RONDA SELECCIONADA -->
     <ion-list>
@@ -54,5 +62,6 @@
         </ion-grid>
       </ion-item>
     </ion-list>
+    </ng-template>
   </ion-card>
 </ion-content>

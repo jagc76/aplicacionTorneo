@@ -43,11 +43,12 @@ $app->get('/consultarEquipos/{letraGrupo}', function ($request, $response, $letr
 });
 
 //  SE CONSULTAN LOS ENCUENTROS PERO SE RECIBE COMO PARAMETRO LA RONDA, PARA CONSULTAR SOLO LOS ENCUENTROS DE ESA RONDA
-$app->get('/consultarEncuentros/{numeroDeEncuentros}', function ($request, $response, $numeroDeEncuentros) { //Defino los servicios
+$app->get('/consultarEncuentros/{numeroDeEncuentros}[/{rangoInicial}]', function ($request, $response, $parametrosConsulta) { //Defino los servicios
     try {
         $db = getDB(); //Carga los datos
-        $sth = $db->prepare("SELECT Cod_Encuentro, Fecha, Cod_Equipo1, Cod_Equipo2 FROM torneovoleibol.encuentro WHERE Cod_Encuentro < :numeroDeEncuentros ORDER BY Fecha;"); //Consulta CONDICIONADA CON WHERE
-        $sth->bindParam(":numeroDeEncuentros", $numeroDeEncuentros["numeroDeEncuentros"], PDO::PARAM_INT); //  EL PARAMETRO PUEDE TENER CUALQUIER TIPADO EJEMPLO: PDO::PARAM_INT
+        $sth = $db->prepare("SELECT Cod_Encuentro, Fecha, Cod_Equipo1, Cod_Equipo2 FROM torneovoleibol.encuentro WHERE Cod_Encuentro > :rangoInicial AND Cod_Encuentro < :numeroDeEncuentros ORDER BY Fecha;"); //Consulta CONDICIONADA CON WHERE
+        $sth->bindParam(":rangoInicial", $parametrosConsulta["rangoInicial"], PDO::PARAM_INT); //  EL PARAMETRO PUEDE TENER CUALQUIER TIPADO EJEMPLO: PDO::PARAM_INT
+        $sth->bindParam(":numeroDeEncuentros", $parametrosConsulta["numeroDeEncuentros"], PDO::PARAM_INT); //  EL PARAMETRO PUEDE TENER CUALQUIER TIPADO EJEMPLO: PDO::PARAM_INT
         $sth->execute(); //Ejecutamos la consulta
         $test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
         //    Verificar si se ha cargado algo
@@ -266,7 +267,7 @@ $app->get('/consultarEquiposDeFinales', function ($request, $response) { //Defin
 $app->get('/consultarMejorJugadora', function ($request, $response) { //Defino los servicios
     try {
         $db = getDB(); //Carga los datos
-        $sth = $db->prepare(" SELECT Nombre, Puntos_Anotados FROM torneovoleibol.jugadoras 
+        $sth = $db->prepare(" SELECT Nombre, Puntos_Anotados FROM torneovoleibol.jugadoras
         ORDER BY Puntos_Anotados DESC LIMIT 10;"); //Consulta CONDICIONADA CON ORDER BY DESC
         $sth->execute(); //Ejecutamos la consulta
         $test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
@@ -288,7 +289,7 @@ $app->get('/consultarMejorJugadora', function ($request, $response) { //Defino l
 $app->get('/consultarMejorEquipo', function ($request, $response) { //Defino los servicios
     try {
         $db = getDB(); //Carga los datos
-        $sth = $db->prepare(" SELECT Nombre_Equipo, puntosPorPartido FROM torneovoleibol.equipos 
+        $sth = $db->prepare(" SELECT Nombre_Equipo, puntosPorPartido FROM torneovoleibol.equipos
         ORDER BY puntosPorPartido DESC LIMIT 10;"); //Consulta CONDICIONADA CON ORDER BY DESC
         $sth->execute(); //Ejecutamos la consulta
         $test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
@@ -311,7 +312,7 @@ $app->addErrorMiddleware(true, true, true);
 $app->run();
 
 
-  
+
 /* //      CONSULTAR SIN WHERE
 $app->get('/consultarEquipos', function ($request, $response) { //Defino los servicios
 try {

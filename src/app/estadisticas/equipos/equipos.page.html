@@ -1,35 +1,35 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home" color="primary"></ion-back-button>
+      <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
-    <ion-title>Equipos</ion-title>
+    <ion-title>Top 10 Equipos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card>
     <ion-row>
-      <ion-col size="6" class="ion-text-center columna">
-        <ion-item color="secondary">
-          <ion-text>Equipos</ion-text>
+      <ion-col size="6" >
+        <ion-item color="secondary" class="ion-text-center">
+          <ion-label>Equipos</ion-label>
         </ion-item>
       </ion-col>
-      <ion-col size="6" class="ion-text-center columna">
-        <ion-item color="secondary">
-          <ion-text>Puntos</ion-text>
+      <ion-col size="6" >
+        <ion-item color="secondary" class="ion-text-center">
+          <ion-label>Puntos</ion-label>
         </ion-item>
       </ion-col>
-      <ion-col size="6" class="ion-text-center columna">
-        <ion-item *ngFor="let miEquipo of bddEquipo">
-          <ion-text>{{miEquipo.Nombre_Equipo}}</ion-text>
+      <ion-col size="6" >
+        <ion-item *ngFor="let miEquipo of bddEquipo" class="ion-text-center">
+          <ion-label>{{miEquipo.Nombre_Equipo}}</ion-label>
         </ion-item>
       </ion-col>
-      <ion-col size="6" class="ion-text-center columna">
-        <ion-item *ngFor="let misPuntosEquipo of bddPuntoEquipo">
-          <ion-text>{{misPuntosEquipo.puntosPorPartido}}</ion-text>
+      <ion-col size="6">
+        <ion-item *ngFor="let misPuntosEquipo of bddPuntoEquipo" class="ion-text-center">
+          <ion-label>{{misPuntosEquipo.puntosPorPartido}}</ion-label>
         </ion-item>
       </ion-col>
     </ion-row>
-  </ion-card>  
+  </ion-card>
 </ion-content>
