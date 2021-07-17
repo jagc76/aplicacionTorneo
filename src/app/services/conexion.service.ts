@@ -29,13 +29,19 @@ export class ConexionService {
 
   consultarEncuentros(numeroDeEncuentros: number, rangoInicial: number) {
     return this.http.get(
-      this.myHttp + "/consultarEncuentros/" + numeroDeEncuentros +"/"+ rangoInicial)
+      this.myHttp + "/consultarEncuentros/" + numeroDeEncuentros + "/" + rangoInicial)
       .toPromise();
   }
 
   consultarInfoEncuentro(codigoEncuentro: any) {
     return this.http.get(
       this.myHttp + "/consultarInfoEncuentro/" + codigoEncuentro)
+      .toPromise();
+  }
+
+  consultarSetsGanados(codigoEncuentro: any, set: number) {
+    return this.http.get(
+      this.myHttp + "/consultarSetsGanados/" + codigoEncuentro + "/" + set)
       .toPromise();
   }
 

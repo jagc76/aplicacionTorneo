@@ -65,6 +65,29 @@ $app->get('/consultarEncuentros/{numeroDeEncuentros}[/{rangoInicial}]', function
         ->withHeader('Content-Type', 'application/json');
 });
 
+//  SE CONSULTAN LOS PUNTAJES DE LOS SETS DEL ENCUENTRO QUE LLEGA COMO PARAMETRO
+$app->get('/consultarSetsGanados/{codigoEncuentro}[/{zet}]', function ($request, $response, $parametrosConsulta) { //Defino los servicios
+    try {
+        $db = getDB(); //Carga los datos
+        $sth = $db->prepare("SELECT Ptos_Equipo1, Ptos_Equipo2 FROM torneovoleibol.zet WHERE Cod_Set = :zet AND Cod_Encuentro = :codigoEncuentro;"); //Consulta CONDICIONADA CON WHERE
+        $sth->bindParam(":codigoEncuentro", $parametrosConsulta["codigoEncuentro"], PDO::PARAM_INT); //  EL PARAMETRO PUEDE TENER CUALQUIER TIPADO EJEMPLO: PDO::PARAM_INT
+        $sth->bindParam(":zet", $parametrosConsulta["zet"], PDO::PARAM_INT); //  EL PARAMETRO PUEDE TENER CUALQUIER TIPADO EJEMPLO: PDO::PARAM_INT
+        $sth->execute(); //Ejecutamos la consulta
+        $test = $sth->fetchAll(PDO::FETCH_ASSOC); //Guardar los resultados de la consulta
+        //    Verificar si se ha cargado algo
+        if ($test) {
+            $response->getBody()->write(json_encode($test)); //write Escribe la respuesta como texto, pero necesito un Json
+            $db = null; //Cerrar la conexion con la base de datos
+        } else {
+            $response->getBody()->write('{"error":"error"}');
+        }
+    } catch (PDOException $e) {
+        $response->getBody()->write('{"error":{"texto":' . $e->getMessage() . '}}'); //En caso que se halla generado algún error
+    }
+    return $response
+        ->withHeader('Content-Type', 'application/json');
+});
+
 //  SE CONSULTA LA INFORMACION DEL ENCUENTRO PERO SE RECIBE COMO PARAMETRO EL CODIGO DEL MISMO, PARA CONSULTAR SOLO LA INFO DE ESE ENCUENTRO
 $app->get('/consultarInfoEncuentro/{codigoEncuentro}', function ($request, $response, $codigoEncuentro) { //Defino los servicios
     try {

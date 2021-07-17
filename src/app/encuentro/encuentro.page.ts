@@ -11,6 +11,8 @@ export class EncuentroPage implements OnInit {
 
   codigoEncuentro: any;
   infoEncuentro: any;
+  setsGanadosEquipo1: number = 0;
+  setsGanadosEquipo2: number = 0;
   idjuez1: string;
   idjuez2: string;
   idjuez3: string;
@@ -27,17 +29,40 @@ export class EncuentroPage implements OnInit {
       .then(
         data => {
           this.infoEncuentro = data;
-          if(this.infoEncuentro[0]['Cod_Encuentro'] < 48){
+          if(this.infoEncuentro[0]['Cod_Encuentro'] <= 48){
             this.ronda = 1;
-          }else if(this.infoEncuentro[0]['Cod_Encuentro'] < 56){
+          }else if(this.infoEncuentro[0]['Cod_Encuentro'] <= 56){
             this.ronda = 2;
-          } else if(this.infoEncuentro[0]['Cod_Encuentro'] < 60){
+          } else if(this.infoEncuentro[0]['Cod_Encuentro'] <= 60){
             this.ronda = 3;
-          } else if(this.infoEncuentro[0]['Cod_Encuentro'] < 64){
+          } else if(this.infoEncuentro[0]['Cod_Encuentro'] <= 62){
             this.ronda = 4;
-          } else if(this.infoEncuentro[0]['Cod_Encuentro'] < 68){
+          } else if(this.infoEncuentro[0]['Cod_Encuentro'] <= 64){
             this.ronda = 5;
           }
+
+          for (let set = 1; set <= 3; set++) {
+
+            this.conexion.consultarSetsGanados(this.infoEncuentro[0]['Cod_Encuentro'], set).then(
+              data => {
+                let puntosEquipo1: number = parseInt(data[0]['Ptos_Equipo1']);
+                let puntosEquipo2: number = parseInt(data[0]['Ptos_Equipo2']);
+
+                // RECIBIENDO LO PUNTAJES DE LA CONSULTA A BASE DE DATOS SE EVALUA QUE EQUIPO GANO CADA SET
+                if (puntosEquipo1 > puntosEquipo2){
+                  this.setsGanadosEquipo1++;
+                }else{
+                  this.setsGanadosEquipo2++;
+                }
+              }
+              )
+              .catch(
+                error => {
+                  console.log("Error." + error);
+                }
+                )
+              }
+
           this.idjuez1 = data[0]['Id_Juezuno'];
           this.idjuez2 = data[0]['Id_Juezdos'];
           this.idjuez3 = data[0]['Id_Jueztres'];
