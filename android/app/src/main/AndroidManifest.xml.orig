@@ -3,17 +3,17 @@
     package="io.ionic.starter">
 
     <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_general"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_general_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+      android:allowBackup="true"
+      android:icon="@mipmap/logtorneo"
+      android:label="@string/app_name"
+      android:roundIcon="@mipmap/logtorneo_round"
+      android:supportsRtl="true"
+      android:theme="@style/AppTheme">
 
         <activity
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
             android:name="io.ionic.starter.MainActivity"
-            android:label="@string/title_activity_main"
+            android:label="SGTV"
             android:launchMode="singleTask">
           <!--  CON ESTO SE MUESTRA EL SPLASH AL ABRIR LA APP
           android:theme="@style/AppTheme.NoActionBarLaunch"
